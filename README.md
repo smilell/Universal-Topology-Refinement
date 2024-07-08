@@ -58,33 +58,33 @@ labelmap_onehot_masked, mask, label_skel = random_mask(labelmap_onehot, map_size
 Optionally, you can train a new U-Net-based topology-refinement network by:
 
 ### Training
-    ```
-    --phase train_post_manualmask --TBout ./output_1/poly_1/ --model ./model_1/poly_1/ --inpaint_type polynomial_gauss --basis_type chebyshev --order 6 --istest --mode3d
-    ```
+```
+--phase train_post_manualmask --TBout ./output_1/poly_1/ --model ./model_1/poly_1/ --inpaint_type polynomial_gauss --basis_type chebyshev --order 6 --istest --mode3d
+```
 
-    `--TBout` The directory to save tensorboard output files
-    
-    `--model` The directory to save trained model parameters
-    
-    `--polynomial_gauss` The type of interpolation
-    
-    `--basis_type` and `--order` The args to control polynomical basis and order
-    
-    `--mode3d` Specify if the dataset is 3D
-    
-    `--test_synthetic_sample` if activate, it will also test on the synthetic data (to validate overfitting or not); if False, it will test use the data from either `--val_softmax` or `--test_softmax` depending on if its during validation or test phase.
+`--TBout` The directory to save tensorboard output files
+
+`--model` The directory to save trained model parameters
+
+`--polynomial_gauss` The type of interpolation
+
+`--basis_type` and `--order` The args to control polynomical basis and order
+
+`--mode3d` Specify if the dataset is 3D
+
+`--test_synthetic_sample` if activate, it will also test on the synthetic data (to validate overfitting or not); if False, it will test use the data from either `--val_softmax` or `--test_softmax` depending on if its during validation or test phase.
 
 Please also change the args of image and segmentation directory in main.py, and their dataloader accordingly.
     
 ### Test
 Given the segmentation predictions from a trained network, the topology refinement result can be obtained by running:
     
-    ```
-    python main.py --phase test_post --trained_model_post ./model_1/poly_1/ --out ./output_1/poly_1/ --TBout./output_1/poly_1/ --test_softmax ./data/cremi_2d/test/softmax/
-    ```
+```
+python main.py --phase test_post --trained_model_post ./model_1/poly_1/ --out ./output_1/poly_1/ --TBout./output_1/poly_1/ --test_softmax ./data/cremi_2d/test/softmax/
+```
     
-    `--trained_model_post` The directory to load the trained topology refinement network
-    `--test_softmax` The directory to load the segmentation prediction as the input of the refinement network
+`--trained_model_post` The directory to load the trained topology refinement network
+`--test_softmax` The directory to load the segmentation prediction as the input of the refinement network
 
 
 
