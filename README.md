@@ -21,7 +21,7 @@ In our paper, the segmentation performance is evaluated on the 3D [ToP-CoW](http
 ## Pipeline
 
 <div style="text-align: center;">
-    <img src="figure/pipeline.png" width="75%">
+    <img src="figure/pipeline.png" width="85%">
 </div>
 
 
