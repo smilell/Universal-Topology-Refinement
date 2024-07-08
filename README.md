@@ -9,9 +9,9 @@ In this paper, we proposed a versatile plug-and-play **topology refinement metho
 
 Given a dataset with segmentation ground truth (GT), we learn the topological priors directly from the GT in a self-supervised manner. This is achieved by randomly interpolating the GT and training a topology refinement network to recover the segmentation. Our post-processing style refinement network operates independently of the upstream segmentation performance, thus agnostic to covariate (domain) shifts.
 
-We support both 2D and 3D topological interpolations with chebyshev, hermite and legendre polynomials.
+We support both 2D and 3D topological interpolations with Chebyshev, Hermite, and Legendre polynomials.
 
-This repository is build on top of the repository of our previous work: [Euler-characteristic-based topology refinement](https://github.com/smilell/Topology-aware-Segmentation-using-Euler-Characteristic)
+This repository is built on top of the repository of our previous work: [Euler-characteristic-based topology refinement](https://github.com/smilell/Topology-aware-Segmentation-using-Euler-Characteristic)
 
 
 ## Dataset
@@ -19,12 +19,13 @@ In our paper, the segmentation performance is evaluated on the 3D [ToP-CoW](http
 
 
 ## Pipeline
-![](figure/pipeline.png)
+
+<img src="figure/pipeline.png" width="75%">
 
 
 
 ## Polynomial perturbation
-You can directly mask on a GT labelmap with polynomial basises by running the following lines in python:
+You can directly mask on a GT labelmap with polynomial bases by running the following lines in Python:
 ```
 from polynomial import Polynomial, random_mask
 # Create a Polynomial object (only needs to be done once)
@@ -68,13 +69,13 @@ Optionally, you can train a new U-Net-based topology-refinement network by:
 
 `--polynomial_gauss` The type of interpolation
 
-`--basis_type` and `--order` The args to control polynomical basis and order
+`--basis_type` and `--order` The args to control polynomial basis and order
 
 `--mode3d` Specify if the dataset is 3D
 
-`--test_synthetic_sample` if activate, it will also test on the synthetic data (to validate overfitting or not); if False, it will test use the data from either `--val_softmax` or `--test_softmax` depending on if its during validation or test phase.
+`--test_synthetic_sample` if activated, will test on the synthetic data (to validate overfitting or not); if False, it will test using the data from either `--val_softmax` or `--test_softmax` depending on if its during validation or test phase.
 
-Please also change the args of image and segmentation directory in main.py, and their dataloader accordingly.
+Please also change the args of the image and segmentation directory in main.py, and their dataloader accordingly.
     
 ### Test
 Given the segmentation predictions from a trained network, the topology refinement result can be obtained by running:
@@ -89,7 +90,7 @@ python main.py --phase test_post --trained_model_post ./model_1/poly_1/ --out ./
 
 
 ## Installation
-This repo is build based on [PyTorch](https://pytorch.org/) and [GUDHI](https://gudhi.inria.fr/) (for topology calculation) libraries. The dependencies can be installed by running the following codes. Note that the PyTorch version is chosen by my GPU (NVIDIA GeForce RTX 3080) and cuda version. Please check if this setting also works for your environment from [PyTorch documents](https://pytorch.org/get-started/previous-versions/).
+This repo is built based on [PyTorch](https://pytorch.org/) and [GUDHI](https://gudhi.inria.fr/) (for topology calculation) libraries. The dependencies can be installed by running the following codes. Note that the PyTorch version is chosen by my GPU (NVIDIA GeForce RTX 3080) and Cuda version. Please check if this setting also works for your environment from [PyTorch documents](https://pytorch.org/get-started/previous-versions/).
 
 ```
 conda create --name euler-segmentation python=3.6
